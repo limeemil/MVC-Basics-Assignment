@@ -1,0 +1,50 @@
+﻿@model MVC_Basics__Assignment.Models.Utility
+
+@{
+    ViewData["Title"] = "About me";
+}
+
+
+<div id="doc">
+
+    <h1>Fever Check</h1>
+    @using (Html.BeginForm("Submit", "Doctor", FormMethod.Post))
+    {
+        <form id="feverForm" name="feverForm">
+            <label for="temperature">Body temperature</label><br />
+            <input type="text" id="temperature" name="temperature" />
+            <input type="submit" value="Submit" onclick="location.href = '@Url.Action("Submit", "Doctor")'" />
+        </form>
+    }
+    <p>@(ViewBag.message)</p>
+</div>
+
+@*
+The following code block is not necessary for the program to function, but kept in for posterity. 
+
+<script>
+        function SubmitInput() {
+            var input = parseFloat(document.forms["feverForm"]["temperature"].value);
+            if (isNaN(input)) {
+                alert("Please enter a number.");
+                return false;
+            }
+            var fever = document.getElementById("@(ViewBag.Fever)").value;
+            if (fever) {
+                CreateText("You have a fever!");
+            }
+            else {
+                CreateText("You don't have a fever.");
+            }
+            return true;
+        }
+
+        function CreateText(text) {
+            const para = document.createElement("p");
+            const node = document.createTextNode(text);
+            para.appendChild(node);
+
+            const element = document.getElementById("doc");
+            element.appendChild(para);
+        }
+    </script>*@
