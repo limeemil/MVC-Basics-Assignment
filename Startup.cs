@@ -35,7 +35,7 @@ namespace MVC_Basics__Assignment
             {
                 endpoints.MapControllerRoute(
                     name: "Doctor",
-                    pattern: "Doctor/{procedure}",
+                    pattern: "/FeverCheck",
                     defaults: new { controller = "Doctor", action = "FeverCheck" });
                 endpoints.MapControllerRoute(
                     name: "Default",
