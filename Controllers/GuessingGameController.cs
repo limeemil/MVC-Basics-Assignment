@@ -9,11 +9,10 @@ namespace MVC_Basics__Assignment.Controllers
 {
     public class GuessingGameController : Controller
     {
-        
+        private readonly Random randGen = new Random();
         [HttpGet]
         public IActionResult GuessingGame()
         {
-            Random randGen = new Random();
             int rand = randGen.Next(1, 101);
             HttpContext.Session.SetInt32("Number", rand);
             return View("GuessingGame");
@@ -26,6 +25,8 @@ namespace MVC_Basics__Assignment.Controllers
             if (guess == correctNumber)
             {
                 ViewBag.Guess = guess + " is correct!";
+                int rand = randGen.Next(1, 101);
+                HttpContext.Session.SetInt32("Number", rand);
             }
             else if (guess > correctNumber)
             {
