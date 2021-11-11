@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,5 +20,7 @@ namespace MVC_Basics__Assignment.Models
                 return "You do not have a fever.";
             }
         }
+
+        
     }
 }
