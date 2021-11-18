@@ -22,6 +22,12 @@ namespace MVC_Basics__Assignment.Controllers
             return View(vm);
         }
 
+        /*public IActionResult People(CreatePersonViewModel viewModel)
+        {
+            viewModel.people.Clear();
+            return View(viewModel);
+        }*/
+
         public IActionResult Persons()
         {
             Person person = new Person();
@@ -65,6 +71,11 @@ namespace MVC_Basics__Assignment.Controllers
             
             vm.people = Person.people;
             return View("People", vm);
+        }
+
+        public PartialViewResult PersonList()
+        {
+            return PartialView("_PersonPartial");
         }
     }
 }
