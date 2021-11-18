@@ -46,6 +46,10 @@ namespace MVC_Basics__Assignment
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "People",
+                    pattern: "/People",
+                    defaults: new { controller = "People", action = "People" });
+                endpoints.MapControllerRoute(
                     name: "GuessingGame",
                     pattern: "/GuessingGame",
                     defaults: new { controller = "GuessingGame", action = "GuessingGame" });
