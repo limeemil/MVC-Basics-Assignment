@@ -38,7 +38,7 @@ namespace MVC_Basics__Assignment.Models
         public static void GeneratePeople()
         {
             people.AddRange(new List<Person> {
-            new Person ("Andreas", "Lönnermark", "5555555555", "Borås"),
+            new Person ("Andreas", "Andersson", "5555555555", "Borås"),
             new Person ("Göran", "Gunnarsson", "0123456789", "Göteborg"),
             new Person ("Robert", "Ström", "0987654321", "Stockholm"),
             });
