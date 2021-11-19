@@ -1,0 +1,25 @@
+﻿@model List<Person>
+
+<div class="container">
+    <h2>Table of People</h2>
+    <table class="table">
+        <thead>
+
+            <div class="row">
+                <div class="col-lg"><p class="font-weight-bold">First name</p></div>
+                <div class="col-lg"><p class="font-weight-bold">Last name</p></div>
+                <div class="col-lg"><p class="font-weight-bold">Phone number</p></div>
+                <div class="col-lg"><p class="font-weight-bold">City</p></div>
+                <div class="col-lg"><p class="font-weight-bold">Action</p></div>
+                <hr />
+            </div>
+
+        </thead>
+        <tbody>
+            @foreach (var person in Model)
+            {
+                <partial name="_PersonPartial" model="person" />
+            }
+        </tbody>
+    </table>
+</div>

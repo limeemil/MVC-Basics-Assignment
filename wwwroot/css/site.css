@@ -24,10 +24,7 @@ a {
     width: 100%;
 }
 
-th {
-    table-layout: fixed;
-    width: 10px;
-}
+
 .navbar {
     display: flex;
     flex-direction: row;

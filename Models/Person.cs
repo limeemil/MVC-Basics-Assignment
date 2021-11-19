@@ -43,5 +43,22 @@ namespace MVC_Basics__Assignment.Models
             new Person ("Robert", "Ström", "0987654321", "Stockholm"),
             });
         }
+
+        public static List<Person> Read()
+        {
+            return people;
+        }
+
+        public static Person Read(int id)
+        {
+            Person targetPerson = people.Find(p => p.ID == id);
+            return targetPerson;
+        }
+
+        public static bool Delete(Person person)
+        {
+            bool status = people.Remove(person);
+            return status;
+        }
     }
 }

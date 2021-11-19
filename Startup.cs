@@ -46,6 +46,10 @@ namespace MVC_Basics__Assignment
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "Ajax",
+                    pattern: "/Ajax",
+                    defaults: new { controller = "Ajax", action = "Index" });
+                endpoints.MapControllerRoute(
                     name: "People",
                     pattern: "/People",
                     defaults: new { controller = "People", action = "People" });
