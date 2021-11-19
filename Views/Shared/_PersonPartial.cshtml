@@ -1,21 +1,17 @@
 ﻿@model Person
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <div class="row">
-    <div class="col-lg-2"><hr /><label>First name</label></div>
-    <div class="col-lg-10">@Model.FirstName</div>
-</div>
+    <div class="col-lg">@Model.FirstName</div>
 
-<div class="row">
-    <div class="col-lg-2"><hr /><label>Last name</label></div>
-    <div class="col-lg-10">@Model.LastName</div>
-</div>
 
-<div class="row">
-    <div class="col-lg-2"><hr /><label>Phone number</label></div>
-    <div class="col-lg-10">@Model.PhoneNumber</div>
-</div>
 
-<div class="row">
-    <div class="col-lg-2"><hr /><label>City</label></div>
-    <div class="col-lg-10">@Model.City</div>
+    <div class="col-lg">@Model.LastName</div>
+
+
+
+    <div class="col-lg">@Model.PhoneNumber</div>
+
+
+
+    <div class="col-lg">@Model.City</div>
 </div>
