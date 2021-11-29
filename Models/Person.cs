@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,14 +9,24 @@ namespace MVC_Basics__Assignment.Models
 {
     public class Person
     {
-        public int ID { get; }
+        [Key]
+        public int ID { get; set; }
 
+        [Required]
+        [Column("First name")]
+        [MaxLength(20)]
         public string FirstName { get; set; }
 
+        [Required]
+        [Column("Last name")]
+        [MaxLength(20)]
         public string LastName { get; set; }
 
+        [Column("Phonenumber")]
+        [MaxLength(20)]
         public string PhoneNumber { get; set; }
 
+        [MaxLength(20)]
         public string City { get; set; }
 
         public static List<Person> people = new List<Person>();
