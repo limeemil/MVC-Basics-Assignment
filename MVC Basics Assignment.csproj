@@ -8,6 +8,22 @@
   <ItemGroup>
     <Compile Remove="Migrations\20211129145204_RemoveEncryption.cs" />
     <Compile Remove="Migrations\20211129145204_RemoveEncryption.Designer.cs" />
+    <Compile Remove="Migrations\20211201130426_Added_CityPeople_Connection.cs" />
+    <Compile Remove="Migrations\20211201130426_Added_CityPeople_Connection.Designer.cs" />
+    <Compile Remove="Migrations\20211201130756_Added_CityPeople_Connection.cs" />
+    <Compile Remove="Migrations\20211201130756_Added_CityPeople_Connection.Designer.cs" />
+    <Compile Remove="Migrations\20211201130959_Added_CityPeople_Connection.cs" />
+    <Compile Remove="Migrations\20211201130959_Added_CityPeople_Connection.Designer.cs" />
+    <Compile Remove="Migrations\20211201131156_Added_CityPeople_Connection.cs" />
+    <Compile Remove="Migrations\20211201131156_Added_CityPeople_Connection.Designer.cs" />
+    <Compile Remove="Migrations\20211201131331_Added_CityPeople_Connection.cs" />
+    <Compile Remove="Migrations\20211201131331_Added_CityPeople_Connection.Designer.cs" />
+    <Compile Remove="Migrations\20211201131449_Added_CityPeople_Connection.cs" />
+    <Compile Remove="Migrations\20211201131449_Added_CityPeople_Connection.Designer.cs" />
+    <Compile Remove="Migrations\20211201140341_Reconstruct2.cs" />
+    <Compile Remove="Migrations\20211201140341_Reconstruct2.Designer.cs" />
+    <Compile Remove="Migrations\20211201141309_Added foreign keys.cs" />
+    <Compile Remove="Migrations\20211201141309_Added foreign keys.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

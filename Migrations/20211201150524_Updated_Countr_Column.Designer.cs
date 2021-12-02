@@ -3,14 +3,16 @@ using MVC_Basics__Assignment.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVC_Basics__Assignment.Migrations
 {
     [DbContext(typeof(PeopleDatabaseContext))]
-    partial class PeopleDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211201150524_Updated_Countr_Column")]
+    partial class Updated_Countr_Column
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,7 +27,7 @@ namespace MVC_Basics__Assignment.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CountryModelId")
+                    b.Property<int>("CountryId")
                         .HasColumnName("Country")
                         .HasColumnType("int");
 
@@ -36,7 +38,7 @@ namespace MVC_Basics__Assignment.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CountryModelId");
+                    b.HasIndex("CountryId");
 
                     b.ToTable("Cities");
 
@@ -44,25 +46,25 @@ namespace MVC_Basics__Assignment.Migrations
                         new
                         {
                             Id = 1,
-                            CountryModelId = 1,
+                            CountryId = 1,
                             Name = "Borås"
                         },
                         new
                         {
                             Id = 2,
-                            CountryModelId = 1,
+                            CountryId = 1,
                             Name = "Göteborg"
                         },
                         new
                         {
                             Id = 3,
-                            CountryModelId = 1,
+                            CountryId = 1,
                             Name = "Stockholm"
                         },
                         new
                         {
                             Id = 4,
-                            CountryModelId = 2,
+                            CountryId = 2,
                             Name = "Oslo"
                         });
                 });
@@ -144,7 +146,7 @@ namespace MVC_Basics__Assignment.Migrations
                 {
                     b.HasOne("MVC_Basics__Assignment.ViewModels.CountryModel", "Country")
                         .WithMany("Cities")
-                        .HasForeignKey("CountryModelId")
+                        .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -6,72 +6,66 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVC_Basics__Assignment.Context;
-using MVC_Basics__Assignment.Models;
 using MVC_Basics__Assignment.ViewModels;
 
 namespace MVC_Basics__Assignment.Controllers
 {
-    public class PeopleDBController : Controller
+    public class CountryModelsController : Controller
     {
         private readonly PeopleDatabaseContext _context;
 
-        public PeopleDBController(PeopleDatabaseContext context)
+        public CountryModelsController(PeopleDatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: PeopleDB
+        // GET: CountryModels
         public async Task<IActionResult> Index()
         {
-            return View(await _context.People.ToListAsync());
+            return View(await _context.Countries.ToListAsync());
         }
 
-        // GET: PeopleDB/Details/5
-        public async Task<IActionResult> Details(string id)
+        // GET: CountryModels/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var query = from Person in _context.People
-                        where Person.SSN == id
-                        select Person;
-            var people = query.ToList();
-            var person = people.FirstOrDefault(m => m.SSN == id);
-            /*var person = await _context.People
-                .FirstOrDefaultAsync(m => m.ID == id);*/
-            if (person == null)
+            var countryModel = await _context.Countries
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (countryModel == null)
             {
                 return NotFound();
             }
 
-            return View(person);
+            return View(countryModel);
         }
 
-        // GET: PeopleDB/Create
+        // GET: CountryModels/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: PeopleDB/Create
+        // POST: CountryModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,PhoneNumber,City")] DBPersonModel person)
+        public async Task<IActionResult> Create([Bind("Id,Name")] CountryModel countryModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(person);
+                _context.Add(countryModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(person);
+            return View(countryModel);
         }
 
-        // GET: PeopleDB/Edit/5
+        // GET: CountryModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,22 +73,22 @@ namespace MVC_Basics__Assignment.Controllers
                 return NotFound();
             }
 
-            var person = await _context.People.FindAsync(id);
-            if (person == null)
+            var countryModel = await _context.Countries.FindAsync(id);
+            if (countryModel == null)
             {
                 return NotFound();
             }
-            return View(person);
+            return View(countryModel);
         }
 
-        // POST: PeopleDB/Edit/5
+        // POST: CountryModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,FirstName,LastName,PhoneNumber,City")] DBPersonModel person)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] CountryModel countryModel)
         {
-            if (id != person.SSN)
+            if (id != countryModel.Id)
             {
                 return NotFound();
             }
@@ -103,12 +97,12 @@ namespace MVC_Basics__Assignment.Controllers
             {
                 try
                 {
-                    _context.Update(person);
+                    _context.Update(countryModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PersonExists(person.SSN))
+                    if (!CountryModelExists(countryModel.Id))
                     {
                         return NotFound();
                     }
@@ -119,42 +113,41 @@ namespace MVC_Basics__Assignment.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(person);
+            return View(countryModel);
         }
 
-        // GET: PeopleDB/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        // GET: CountryModels/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var person = await _context.People
-                .FirstOrDefaultAsync(m => m.SSN == id);
-            if (person == null)
+            var countryModel = await _context.Countries
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (countryModel == null)
             {
                 return NotFound();
             }
 
-            return View(person);
+            return View(countryModel);
         }
 
-        // POST: PeopleDB/Delete/5
+        // POST: CountryModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var person = await _context.People.FindAsync(id);
-            _context.People.Remove(person);
+            var countryModel = await _context.Countries.FindAsync(id);
+            _context.Countries.Remove(countryModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-
-        private bool PersonExists(string id)
+        private bool CountryModelExists(int id)
         {
-            return _context.People.Any(e => e.SSN == id);
+            return _context.Countries.Any(e => e.Id == id);
         }
     }
 }

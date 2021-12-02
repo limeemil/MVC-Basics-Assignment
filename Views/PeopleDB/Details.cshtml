@@ -1,4 +1,4 @@
-﻿@model MVC_Basics__Assignment.Models.Person
+﻿@model MVC_Basics__Assignment.ViewModels.DBPersonModel
 
 @{
     ViewData["Title"] = "Details";
@@ -38,6 +38,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.SSN">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
