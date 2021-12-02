@@ -3,14 +3,16 @@ using MVC_Basics__Assignment.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVC_Basics__Assignment.Migrations
 {
     [DbContext(typeof(PeopleDatabaseContext))]
-    partial class PeopleDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211202084053_Added languages")]
+    partial class Addedlanguages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

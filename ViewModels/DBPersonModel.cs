@@ -34,5 +34,7 @@ namespace MVC_Basics__Assignment.ViewModels
         [Required]
         [Column("City")]
         public CityModel City { get; set; }
+
+        public List<PersonLanguageModel> PersonLanguages { get; set; }
     }
 }

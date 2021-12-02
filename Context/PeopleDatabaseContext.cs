@@ -18,6 +18,10 @@ namespace MVC_Basics__Assignment.Context
 
         public DbSet<CountryModel> Countries { get; set; }
 
+        public DbSet<LanguageModel> Languages { get; set; }
+
+        public DbSet<PersonLanguageModel> PersonLanguages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -33,27 +37,17 @@ namespace MVC_Basics__Assignment.Context
                 .HasForeignKey(co => co.CountryModelId)
                 .IsRequired();
 
-            /*var Boras = new CityModel
-            {
-                Id = 1,
-                Name = "Borås",
-            };
+            modelBuilder.Entity<PersonLanguageModel>().HasKey(pl => new { pl.LanguageId, pl.PersonSSN });
 
-            var Goteborg = new CityModel
-            {
-                Id = 2,
-                Name = "Göteborg",
-            };
+            modelBuilder.Entity<PersonLanguageModel>()
+                .HasOne(pl => pl.Person)
+                .WithMany(p => p.PersonLanguages)
+                .HasForeignKey(pl => pl.PersonSSN);
 
-            var Stockholm = new CityModel
-            {
-                Id = 3,
-                Name = "Stockholm",
-            };*/
-
-            /*modelBuilder.Entity<CityModel>().HasData(Boras);
-            modelBuilder.Entity<CityModel>().HasData(Goteborg);
-            modelBuilder.Entity<CityModel>().HasData(Stockholm);*/
+            modelBuilder.Entity<PersonLanguageModel>()
+                .HasOne(pl => pl.Language)
+                .WithMany(l => l.PersonLanguages)
+                .HasForeignKey(pl => pl.LanguageId);
 
             modelBuilder.Entity<CountryModel>().HasData(new CountryModel { Id = 1, Name = "Sverige" });
             modelBuilder.Entity<CountryModel>().HasData(new CountryModel { Id = 2, Name = "Norge" });
@@ -64,10 +58,17 @@ namespace MVC_Basics__Assignment.Context
             modelBuilder.Entity<CityModel>().HasData(new CityModel { Id = 4, Name = "Oslo", CountryModelId = 2 });
 
 
-            
-
             modelBuilder.Entity<DBPersonModel>().HasData(new DBPersonModel { SSN = "0123456789", FirstName = "Andreas", LastName = "Lönnermark", PhoneNumber = "1234567890", CityId = 1});
-            
+            modelBuilder.Entity<DBPersonModel>().HasData(new DBPersonModel { SSN = "9876543210", FirstName = "Martin", LastName = "Nielsen", PhoneNumber = "1111111111", CityId = 4 });
+
+            modelBuilder.Entity<LanguageModel>().HasData(new LanguageModel { Id = 1, Name = "Svenska" });
+            modelBuilder.Entity<LanguageModel>().HasData(new LanguageModel { Id = 2, Name = "Norsk" });
+            modelBuilder.Entity<LanguageModel>().HasData(new LanguageModel { Id = 3, Name = "English" });
+
+            modelBuilder.Entity<PersonLanguageModel>().HasData(new PersonLanguageModel { PersonSSN = "0123456789", LanguageId = 1 });
+            modelBuilder.Entity<PersonLanguageModel>().HasData(new PersonLanguageModel { PersonSSN = "0123456789", LanguageId = 3 });
+            modelBuilder.Entity<PersonLanguageModel>().HasData(new PersonLanguageModel { PersonSSN = "9876543210", LanguageId = 2 });
+            modelBuilder.Entity<PersonLanguageModel>().HasData(new PersonLanguageModel { PersonSSN = "9876543210", LanguageId = 3 });
         }
 
     }
