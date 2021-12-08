@@ -4,14 +4,16 @@ using MVC_Basics__Assignment.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVC_Basics__Assignment.Migrations
 {
     [DbContext(typeof(PeopleDatabaseContext))]
-    partial class PeopleDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211208152622_Added automatic role assignment")]
+    partial class Addedautomaticroleassignment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -326,15 +328,15 @@ namespace MVC_Basics__Assignment.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c141f8dd-0ce8-44fc-b767-f5e2dce9f51e",
-                            ConcurrencyStamp = "f932ffef-e502-4507-bc57-275ca0c7e124",
+                            Id = "89a7aec7-049d-4cbe-b996-625d9ec7f4e3",
+                            ConcurrencyStamp = "4b269023-ebd4-4754-9547-87eb75f0641c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "444c4893-6aa7-4e51-baa8-27427f8740b8",
-                            ConcurrencyStamp = "64a42a00-6d48-4638-9478-0806e5e0174c",
+                            Id = "69505706-e3bd-42b1-9858-83201608f1b2",
+                            ConcurrencyStamp = "6567c9e0-0dc8-4465-89c3-47b9d16b5f33",
                             Name = "User",
                             NormalizedName = "USER"
                         });

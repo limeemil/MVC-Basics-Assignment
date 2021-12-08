@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,7 @@ namespace MVC_Basics__Assignment.Controllers
         }
 
         // GET: PeopleDB/Details/5
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -50,6 +52,7 @@ namespace MVC_Basics__Assignment.Controllers
         }
 
         // GET: PeopleDB/Create
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Create()
         {
             return View();
@@ -60,6 +63,7 @@ namespace MVC_Basics__Assignment.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,PhoneNumber,City")] DBPersonModel person)
         {
             if (ModelState.IsValid)
@@ -72,7 +76,8 @@ namespace MVC_Basics__Assignment.Controllers
         }
 
         // GET: PeopleDB/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        [Authorize(Roles = "Admin,User")]
+        public async Task<IActionResult> Edit(string? id)
         {
             if (id == null)
             {
@@ -92,6 +97,7 @@ namespace MVC_Basics__Assignment.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Edit(string id, [Bind("ID,FirstName,LastName,PhoneNumber,City")] DBPersonModel person)
         {
             if (id != person.SSN)
@@ -123,6 +129,7 @@ namespace MVC_Basics__Assignment.Controllers
         }
 
         // GET: PeopleDB/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -143,7 +150,8 @@ namespace MVC_Basics__Assignment.Controllers
         // POST: PeopleDB/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var person = await _context.People.FindAsync(id);
             _context.People.Remove(person);

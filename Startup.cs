@@ -12,6 +12,8 @@ using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using MVC_Basics__Assignment.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace MVC_Basics__Assignment
 {
@@ -41,6 +43,13 @@ namespace MVC_Basics__Assignment
             services.AddDbContext<PeopleDatabaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), 
                 providerOptions => providerOptions.EnableRetryOnFailure()));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<PeopleDatabaseContext>();
+
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +63,9 @@ namespace MVC_Basics__Assignment
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseSession();
 
@@ -82,6 +94,7 @@ namespace MVC_Basics__Assignment
                 endpoints.MapControllerRoute(
                     name: "Default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

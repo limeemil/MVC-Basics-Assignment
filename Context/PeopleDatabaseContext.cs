@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MVC_Basics__Assignment.Models;
 using MVC_Basics__Assignment.ViewModels;
 using System;
@@ -8,9 +10,12 @@ using System.Threading.Tasks;
 
 namespace MVC_Basics__Assignment.Context
 {
-    public class PeopleDatabaseContext : DbContext
+    public class PeopleDatabaseContext : IdentityDbContext<ApplicationUser>
     {
-        public PeopleDatabaseContext(DbContextOptions<PeopleDatabaseContext> options) : base(options) { }
+        public PeopleDatabaseContext(DbContextOptions<PeopleDatabaseContext> options) : base(options)
+        {
+
+        }
 
         public DbSet<DBPersonModel> People { get; set; }
 
@@ -22,8 +27,11 @@ namespace MVC_Basics__Assignment.Context
 
         public DbSet<PersonLanguageModel> PersonLanguages { get; set; }
 
+        public override DbSet<ApplicationUser> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<DBPersonModel>()
                 .HasOne(p => p.City)
@@ -69,6 +77,23 @@ namespace MVC_Basics__Assignment.Context
             modelBuilder.Entity<PersonLanguageModel>().HasData(new PersonLanguageModel { PersonSSN = "0123456789", LanguageId = 3 });
             modelBuilder.Entity<PersonLanguageModel>().HasData(new PersonLanguageModel { PersonSSN = "9876543210", LanguageId = 2 });
             modelBuilder.Entity<PersonLanguageModel>().HasData(new PersonLanguageModel { PersonSSN = "9876543210", LanguageId = 3 });
+
+            //string roleId = Guid.NewGuid().ToString();
+            //string userRoleId = Guid.NewGuid().ToString();
+
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                //Id = roleId,
+                Name = "Admin",
+                NormalizedName = "ADMIN"
+            });
+
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                //Id = userRoleId,
+                Name = "User",
+                NormalizedName = "USER"
+            });
         }
 
     }

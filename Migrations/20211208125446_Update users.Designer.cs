@@ -4,14 +4,16 @@ using MVC_Basics__Assignment.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVC_Basics__Assignment.Migrations
 {
     [DbContext(typeof(PeopleDatabaseContext))]
-    partial class PeopleDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211208125446_Update users")]
+    partial class Updateusers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -322,22 +324,6 @@ namespace MVC_Basics__Assignment.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "c141f8dd-0ce8-44fc-b767-f5e2dce9f51e",
-                            ConcurrencyStamp = "f932ffef-e502-4507-bc57-275ca0c7e124",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "444c4893-6aa7-4e51-baa8-27427f8740b8",
-                            ConcurrencyStamp = "64a42a00-6d48-4638-9478-0806e5e0174c",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

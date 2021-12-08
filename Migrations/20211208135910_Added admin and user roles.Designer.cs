@@ -4,14 +4,16 @@ using MVC_Basics__Assignment.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVC_Basics__Assignment.Migrations
 {
     [DbContext(typeof(PeopleDatabaseContext))]
-    partial class PeopleDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211208135910_Added admin and user roles")]
+    partial class Addedadminanduserroles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -326,15 +328,15 @@ namespace MVC_Basics__Assignment.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c141f8dd-0ce8-44fc-b767-f5e2dce9f51e",
-                            ConcurrencyStamp = "f932ffef-e502-4507-bc57-275ca0c7e124",
+                            Id = "d44c2c18-756a-4b70-8f7f-dbe59788cef0",
+                            ConcurrencyStamp = "aeec39e3-a085-48af-9368-3b927b8cce75",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "444c4893-6aa7-4e51-baa8-27427f8740b8",
-                            ConcurrencyStamp = "64a42a00-6d48-4638-9478-0806e5e0174c",
+                            Id = "3faf8ae7-1347-48e2-8dee-d7705c4a6e48",
+                            ConcurrencyStamp = "63611be9-4d66-49d4-8c89-087ea65c9f0c",
                             Name = "User",
                             NormalizedName = "USER"
                         });

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,12 +21,14 @@ namespace MVC_Basics__Assignment.Controllers
         }
 
         // GET: CountryModels
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Countries.ToListAsync());
         }
 
         // GET: CountryModels/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,6 +47,7 @@ namespace MVC_Basics__Assignment.Controllers
         }
 
         // GET: CountryModels/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +58,7 @@ namespace MVC_Basics__Assignment.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Name")] CountryModel countryModel)
         {
             if (ModelState.IsValid)
@@ -66,6 +71,7 @@ namespace MVC_Basics__Assignment.Controllers
         }
 
         // GET: CountryModels/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,6 +92,7 @@ namespace MVC_Basics__Assignment.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] CountryModel countryModel)
         {
             if (id != countryModel.Id)
@@ -117,6 +124,7 @@ namespace MVC_Basics__Assignment.Controllers
         }
 
         // GET: CountryModels/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,6 +145,7 @@ namespace MVC_Basics__Assignment.Controllers
         // POST: CountryModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var countryModel = await _context.Countries.FindAsync(id);

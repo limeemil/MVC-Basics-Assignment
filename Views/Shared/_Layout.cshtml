@@ -13,6 +13,7 @@
             <div class="container">
                 <a class="navbar-logo" asp-area="" asp-controller="Home" asp-action="Index">MVC - Andreas</a>
                 <div class="navbar-links">
+                    <partial name="_LoginPartial" />
                     <ul>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -41,6 +42,12 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="PeopleDB" asp-action="Index">PeopleDB</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="CityModels" asp-action="Index">Cities</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="CountryModels" asp-action="Index">Countries</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -48,17 +55,18 @@
     </header>
     <div class="container">
         <main role="main">
-             @RenderBody()
+            @RenderBody()
         </main>
     </div>
     <footer>
         <div class="container">
             @DateTime.Now.ToShortDateString() Andreas Lönnermark
         </div>
-        
+
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/js/PersonScript.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>
