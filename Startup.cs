@@ -14,6 +14,10 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using MVC_Basics__Assignment.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using JavaScriptEngineSwitcher.V8;
+using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
+using React.AspNet;
 
 namespace MVC_Basics__Assignment
 {
@@ -36,7 +40,11 @@ namespace MVC_Basics__Assignment
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
-            
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddReact();
+            services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName)
+                .AddV8();
 
             services.AddMvc();
 
@@ -60,6 +68,11 @@ namespace MVC_Basics__Assignment
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseReact(config =>
+            {
+                //config.AddScript("file");
+            }
+            );
             app.UseStaticFiles();
 
             app.UseRouting();
